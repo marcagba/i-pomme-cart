@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Itunes Cart</title>
+	<link rel="stylesheet" href="../styles/style.css">
+ 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,900,700' rel='stylesheet' type='text/css'>
+ 	<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<section class="SearchWrapper">
+	<div class="SearchBoxWrapper">
+		<form action="/search" class="SearchBox">
+		    <input type="text" class="SearchBox-field" placeholder="Search">
+		    <input type="submit" value ="Search" class="SearchBox-btn">
+		</form>
+	</div>
+	<div class="ResultWrapper SearchWrapper-resultWrapper">
+		<div class="ResultList">
+			<div class="ResultItem">
+			<div>
+				<img src="../images/placeholder.png" alt="" class="ResultItem-img">
+			</div>
+				<div class="ItemBody">
+					<h3 class="ItemBody-title">RappersDelight</h3>
+					<p class="ItemBody-desc">Yeah Baby</p>
+					<!-- <p><span class="ItemBody-title">RappersDelight</span><br><span class="ItemBody-desc">Yeah Baby</span></p> -->
+				</div>
+				<button type="button" class="ResultItem-btn">Add to cart</button>
+			</div>
+			<div class="ResultItem">
+				<div class="ResultItem-img">
+					<img src="../images/placeholder.png" alt="" class="ResultItem-img">
+				</div>
+				<div class="ItemBody">
+					<h3 class="ItemBody-title">Eminem</h3>
+					<p class="ItemBody-desc">BlahBlahBlah</p>
+				</div>
+			</div>
+			<div class="ResultItem">
+				<img class="ResultItem-img" src="../images/placeholder.png" alt="">
+				<div class="ItemBody">
+					<h3 class="ItemBody-title">Eminem</h3>
+					<p class="ItemBody-desc">BlahBlahBlah</p>
+				</div>
+			</div>
+		</div>
+		<div class="ResultNav">
+			<div class="ResultNav-prev">
+				<!-- <img src="../images/previous.png" alt=""> -->
+			</div>
+			<div class="ResultNav-next">
+				<!-- <img src="../images/next.png" alt=""> -->
+			</div>
+		</div>
+	</div>
+</section>
+<aside class="CartWrapper">
+	<div class="Cart">
+		<table class="CartList">
+			<thead>
+				<tr>
+					<th class="CartList-headerCell">Quantity</th>
+					<th class="CartList-headerCell">Article</th>
+					<th class="CartList-headerCell">Price</th>
+				</tr>
+			</thead>
+			<tbody class="CartList-body">
+				<tr>
+					<td class="CartList-cell">1</td>
+					<td class="CartList-cell">Lose Yourself</td>
+					<td class="CartList-cell">1.69</td>
+				</tr>
+				<tr>
+					<td class="CartList-cell">1</td>
+					<td class="CartList-cell">Rappers Delight</td>
+					<td class="CartList-cell">1.69</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th class="CartList-headerCell">Grand Total</th>
+					<th class="CartList-headerCell"></th>
+					<th class="CartList-headerCell">XX€</th>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</aside>	
+<!-- 	<script data-main="../js/main" src="../js/bower_components/requirejs/require.js"></script>	 -->
+</body>
+</html>

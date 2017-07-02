@@ -7,8 +7,9 @@ const Backone = require('backbone');
 const _ = require('underscore');
 const $ = require('jquery');
 const Handlebars = require('handlebars');
-//'text!templates/result-item.html'
-//resultItemTemplate) {
+const fs = require('fs');
+const resultItemTemplate = fs.readFileSync('templates/result-item.html', 'utf8');
+
 let ResultItemView = Backbone.View.extend({
 
     className: 'ResultItem',
@@ -39,8 +40,6 @@ let ResultItemView = Backbone.View.extend({
 
         this.router.navigate('add2Cart/' + this.model.get('id'), true);
     }
-
-
 });
 
 exports.ResultItemView = ResultItemView;

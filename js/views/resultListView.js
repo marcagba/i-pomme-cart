@@ -5,8 +5,9 @@ const _ = require('underscore');
 const $ = require('jquery');
 const Handlebars = require('handlebars');
 const ResultItemView = require('views/ResultItemView');
-//'text!templates/result-nav.html'
-//resultNavTemplate) {
+const fs = require('fs');
+const resultNavTemplate = fs.readFileSync('templates/result-nav.html', 'utf8');
+
 let ResultListView = Backbone.View.extend({
     className: 'ResultList',
 

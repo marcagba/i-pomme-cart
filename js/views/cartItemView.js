@@ -8,8 +8,9 @@ const Backone = require('backbone');
 const _ = require('underscore');
 const $ = require('jquery');
 const Handlebars = require('handlebars');
-//'text!templates/cart-item.html'
-//cartItemTemplate) {
+const fs = require('fs');
+const cartItemTemplate = fs.readFileSync('templates/cart-item.html', 'utf8');
+
 let CartItemView = Backbone.View.extend({
 
 	tagName: 'tr',

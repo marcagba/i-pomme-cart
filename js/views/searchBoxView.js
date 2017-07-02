@@ -8,8 +8,9 @@ const Backone = require('backbone');
 const _ = require('underscore');
 const $ = require('jquery');
 const Handlebars = require('handlebars');
-//'text!templates/search-box.html'
-//searchBoxTemplate) {
+const fs = require('fs');
+const searchBoxTemplate = fs.readFileSync('templates/search-box.html', 'utf8');
+
 let SearchBoxView  = Backbone.View.extend({
 
     className: 'SearchBoxWrapper',

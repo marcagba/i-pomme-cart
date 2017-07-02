@@ -2,68 +2,59 @@
 * Responsible of the Cart"s View logic
 * @module CartView
 */
-define([
-	'backbone',
- 	'jquery',
- 	'underscore',
- 	'handlebars',
- 	'views/cartItemView',
- 	'text!templates/cart-list.html'
- ], function (
- 		Backbone, 
- 		$, 
- 		_, 
- 		Handlebars, 
- 		CartItemView, 
- 		cartListTemplate
- 	) {
-	'use-strict';
+'use-strict';
 
-	var exports = Backbone.View.extend({
-		
-		tagName: 'div',
-		className: 'Cart CartWrapper-cart',
-		
-		template: Handlebars.compile(cartListTemplate),
+const Backone = require('backbone');
+const _ = require('underscore');
+const $ = require('jquery');
+const Handlebars = require('handlebars');
+const ItemView = require('views/cartItemView');
+//'text!templates/cart-list.html'
+//  cartListTemplate
 
-		cartItemList: [],
+let CartView = Backbone.View.extend({
+    tagName: 'div',
+    className: 'Cart CartWrapper-cart',
 
-		total: 0,
+    template: Handlebars.compile(cartListTemplate),
 
-		/**
-		* we trigger the renderer when the collection updates
-		*/
-		initialize: function initialize(options) {
-			this.collection = options && options.collection || null;
-			this.listenTo(this.collection, 'add', this.render);
-		},
+    cartItemList: [],
 
-		/** TBD */
-		render: function render(model, collection) {
-			this.addStructure();
-			this.total = collection.total;
+    total: 0,
 
-			$('.CartList-total').html(this.total + '€');
-			
-			this.addItem(model, this);
+    /**
+    * we trigger the renderer when the collection updates
+    */
+    initialize: function initialize(options) {
+        this.collection = options && options.collection || null;
+        this.listenTo(this.collection, 'add', this.render);
+    },
 
-			return this;
-		},
+    /** TBD */
+    render: function render(model, collection) {
+        this.addStructure();
+        this.total = collection.total;
 
-		addStructure: _.once(function addStructure() {
-			var cartListTmpl = this.template({ total: this.total});
-			this.$el.html(cartListTmpl);
-			return this;
-		}),
+        $('.CartList-total').html(this.total + '€');
 
-		/**
+        this.addItem(model, this);
 
-		*/
-		addItem: function addItem(itemModel) {
-			this.cartItemList.push( new CartItemView({ model: itemModel }) );
-			$('.CartList-body').append(_.last(this.cartItemList).render().el);
-		}
-	});
+        return this;
+    },
 
-	return exports;
+    addStructure: _.once(function addStructure() {
+        var cartListTmpl = this.template({ total: this.total});
+        this.$el.html(cartListTmpl);
+        return this;
+    }),
+
+    /**
+
+    */
+    addItem: function addItem(itemModel) {
+        this.cartItemList.push( new CartItemView({ model: itemModel }) );
+        $('.CartList-body').append(_.last(this.cartItemList).render().el);
+    }
 });
+
+exports.CartView = CartView;

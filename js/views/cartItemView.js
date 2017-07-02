@@ -2,48 +2,45 @@
 * Responsible for a cart item View logic
 * @module CartItemView
 */
-define([
-	'backbone',
- 	'jquery',
- 	'underscore',
- 	'handlebars',
- 	'text!templates/cart-item.html'
- ], function (Backbone, $, _, Handlebars, cartItemTemplate) {
-	'use-strict';
+'use-strict';
 
-	var exports = Backbone.View.extend({
-		
-		tagName: 'tr',
-		className: 'CartItem',
-		
-		template: Handlebars.compile(cartItemTemplate),
+const Backone = require('backbone');
+const _ = require('underscore');
+const $ = require('jquery');
+const Handlebars = require('handlebars');
+//'text!templates/cart-item.html'
+//cartItemTemplate) {
+let CartItemView = Backbone.View.extend({
 
-		initialize: function initialize(options) {
-			this.model = options && options.model || null;
-			this.listenTo(this.model, 'change', this.render);
-		},
+	tagName: 'tr',
+	className: 'CartItem',
 
-		render: function render() {
-			if(this.model) {
-				var itemTmpl = this.template(this.model.toJSON());
-				this.$el.html(itemTmpl);
-			}
-			return this;
-		},
+	template: Handlebars.compile(cartItemTemplate),
 
-		// events: {
-		// 	'click': 'click'
-		// },
+	initialize: function initialize(options) {
+		this.model = options && options.model || null;
+		this.listenTo(this.model, 'change', this.render);
+	},
 
-		// click: function click(e) {
-		// 	e.preventDefault();
-		// 	e.stopPropagation();
+	render: function render() {
+		if(this.model) {
+			var itemTmpl = this.template(this.model.toJSON());
+			this.$el.html(itemTmpl);
+		}
+		return this;
+	},
 
-		// 	console.log('Hello World !');
-		// }
+	// events: {
+	// 	'click': 'click'
+	// },
 
+	// click: function click(e) {
+	// 	e.preventDefault();
+	// 	e.stopPropagation();
 
-	});
-
-	return exports;
+	// 	console.log('Hello World !');
+	// }
 });
+
+exports.CartItemView = CartItemView;
+

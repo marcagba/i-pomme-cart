@@ -2,52 +2,48 @@
 * The logic behind the search bar
 * @module SearchBoxView
 */
-define([
-	'backbone',
- 	'jquery',
- 	'underscore',
- 	'handlebars',
- 	'text!templates/search-box.html'
- ], function (Backbone, $, _, Handlebars, searchBoxTemplate) {
-	'use-strict';
+'use-strict';
 
-	var exports = Backbone.View.extend({
-		
-		className: 'SearchBoxWrapper',
+const Backone = require('backbone');
+const _ = require('underscore');
+const $ = require('jquery');
+const Handlebars = require('handlebars');
+//'text!templates/search-box.html'
+//searchBoxTemplate) {
+let SearchBoxView  = Backbone.View.extend({
 
-		template: Handlebars.compile(searchBoxTemplate),
+    className: 'SearchBoxWrapper',
 
-		/** needs an action to perform when a saerch is fire, and a router */
-		initialize: function initialize(options) {
-			this.action = options && options.action || '';
-			this.router = options && options.router || '';
-			console.log(this.action);
-		},
+    template: Handlebars.compile(searchBoxTemplate),
 
-		render: function render() {
-			var searchBoxTmpl = this.template({ action: this.action });
-			this.$el.html(searchBoxTmpl);
-			return this;
-		},
+    /** needs an action to perform when a saerch is fire, and a router */
+    initialize: function initialize(options) {
+        this.action = options && options.action || '';
+        this.router = options && options.router || '';
+        console.log(this.action);
+    },
 
-		
-		events: {
-			'submit': 'submit'
-		},
+    render: function render() {
+        var searchBoxTmpl = this.template({ action: this.action });
+        this.$el.html(searchBoxTmpl);
+        return this;
+    },
 
-		/** we redirect submit to perform a search without refreshing the page */
-		submit: function submit(e) {
-			e.preventDefault();
-			e.stopPropagation();
-			
-    		var query = this.$('.SearchBox-field').val();
-    		if (query) {
-            	this.router.navigate('search/' + query, true);
-        	}
-		}
+    events: {
+        'submit': 'submit'
+    },
 
+    /** we redirect submit to perform a search without refreshing the page */
+    submit: function submit(e) {
+        e.preventDefault();
+        e.stopPropagation();
 
-	});
-
-	return exports;
+        var query = this.$('.SearchBox-field').val();
+        if (query) {
+            this.router.navigate('search/' + query, true);
+        }
+    }
 });
+
+exports.SearchBoxView = SearchBoxView;
+

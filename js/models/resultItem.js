@@ -4,7 +4,7 @@
 */
 'use-strict';
 
-const Backone = require('backbone');
+const Backbone = require('backbone');
 const _ = require('underscore');
 let ResultItem = Backbone.Model.extend({
 
@@ -38,5 +38,5 @@ let ResultItem = Backbone.Model.extend({
     }
 });
 
- exports.ResultItem = ResultItem;;
+ module.exports = ResultItem;;
 

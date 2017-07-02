@@ -4,7 +4,7 @@
 */
 'use-strict';
 
-const Backone = require('backbone');
+const Backbone = require('backbone');
 const _ = require('underscore');
 const $ = require('jquery');
 const Handlebars = require('handlebars');
@@ -43,5 +43,5 @@ let CartItemView = Backbone.View.extend({
 	// }
 });
 
-exports.CartItemView = CartItemView;
+module.exports = CartItemView;
 

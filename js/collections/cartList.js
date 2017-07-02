@@ -4,9 +4,9 @@
 */
 'use-strict';
 
-const Backone = require('backbone');
+const Backbone = require('backbone');
 const _ = require('underscore');
-const ResultItem = require('models/resultItem');
+const ResultItem = require('../models/resultItem');
 
 let CartList = Backbone.Collection.extend({
 /** Same model as for search*/
@@ -38,4 +38,4 @@ let CartList = Backbone.Collection.extend({
     }
 });
 
-exports.CartList = CartList;
+module.exports = CartList;

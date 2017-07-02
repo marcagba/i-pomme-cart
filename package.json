@@ -2,16 +2,31 @@
   "name": "itunes-cart",
   "version": "1.0.0",
   "description": "an old job interview excercice of mine",
-  "main": "index.js",
+  "main": "./js/main.js",
+  "browser": {
+    "templates": "../templates/",
+    "$": "jquery"
+  },
+  "browserify": {
+    "transform": [
+        "brfs",
+        "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "$": "global:$"
+  },
   "dependencies": {
     "backbone": "^1.3.3",
     "handlebars": "^4.0.10",
     "jquery": "^3.2.1",
-    "requirejs": "^2.3.3",
-    "text": "^0.1.0",
     "underscore": "^1.8.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "brfs": "^1.4.3",
+    "browserify": "^14.4.0",
+    "browserify-shim": "^3.8.14"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

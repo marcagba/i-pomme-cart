@@ -4,7 +4,7 @@
 */
 'use-strict';
 
-const Backone = require('backbone');
+const Backbone = require('backbone');
 const $ = require('jquery');
 
 let Router = Backbone.Router.extend({
@@ -38,4 +38,4 @@ let Router = Backbone.Router.extend({
     }
 });
 
-exports.Router = Router;
+module.exports = Router;

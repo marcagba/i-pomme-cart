@@ -4,11 +4,11 @@
 */
 'use-strict';
 
-const Backone = require('backbone');
+const Backbone = require('backbone');
 const _ = require('underscore');
 const $ = require('jquery');
 const Handlebars = require('handlebars');
-const ItemView = require('views/cartItemView');
+const ItemView = require('./cartItemView');
 const fs = require('fs');
 const cartListTemplate = fs.readFileSync('templates/cart-list.html', 'utf8');
 
@@ -57,4 +57,4 @@ let CartView = Backbone.View.extend({
     }
 });
 
-exports.CartView = CartView;
+module.exports = CartView;

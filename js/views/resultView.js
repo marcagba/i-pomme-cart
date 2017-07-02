@@ -4,11 +4,11 @@
 */
 'use-strict';
 
-const Backone = require('backbone');
+const Backbone = require('backbone');
 const _ = require('underscore');
 const $ = require('jquery');
 const Handlebars = require('handlebars');
-const ResultItemView = require('views/ResultItemView');
+const ResultItemView = require('./resultItemView');
 const fs = require('fs');
 const resultListTemplate = fs.readFileSync('templates/result-list.html', 'utf8');
 const resultNavTemplate = fs.readFileSync('templates/result-nav.html', 'utf8');
@@ -126,4 +126,4 @@ let ResultView = Backbone.View.extend({
     }
 });
 
-exports.ResultView = ResultView;
+module.exports = ResultView;

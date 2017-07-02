@@ -3,7 +3,7 @@
 */
 'use-strict';
 
-const Backone = require('backbone');
+const Backbone = require('backbone');
 const _ = require('underscore');
 const $ = require('jquery');
 const Handlebars = require('handlebars');
@@ -42,5 +42,5 @@ let ResultItemView = Backbone.View.extend({
     }
 });
 
-exports.ResultItemView = ResultItemView;
+module.exports = ResultItemView;
 

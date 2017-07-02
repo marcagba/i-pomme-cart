@@ -4,7 +4,7 @@
 */
 'use-strict';
 
-const Backone = require('backbone');
+const Backbone = require('backbone');
 const _ = require('underscore');
 const $ = require('jquery');
 const Handlebars = require('handlebars');
@@ -46,5 +46,5 @@ let SearchBoxView  = Backbone.View.extend({
     }
 });
 
-exports.SearchBoxView = SearchBoxView;
+module.exports = SearchBoxView;
 

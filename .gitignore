@@ -2,3 +2,5 @@ bower_components
 node_modules
 itunes-cart.sublime-project
 itunes-cart.sublime-workspace
+*.swp
+.DS_Store

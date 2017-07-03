@@ -4,7 +4,6 @@
 */
 'use-strict';
 const Backbone = require('backbone');
-const _ = require('underscore');
 const ResultItem = require('../models/resultItem');
 
 /**
@@ -15,7 +14,7 @@ let ResultList = Backbone.Collection.extend({
     model: ResultItem,
 
     /** The web service url to use */
-    url : function url(){
+    url(){
         return 'https://itunes.apple.com/search?term=' + this.query;
     },
 
@@ -27,7 +26,7 @@ let ResultList = Backbone.Collection.extend({
     * @param {Object} response the server response
     * @param {Object} options some options
     */
-    parse: function parse(response, options) {
+    parse(response, options) {
         return response.results;
     }
 });

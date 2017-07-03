@@ -1,7 +1,6 @@
 'use-strict';
 
 const Backbone = require('backbone');
-const _ = require('underscore');
 const $ = require('jquery');
 const Handlebars = require('handlebars');
 const ResultItemView = require('./resultItemView');
@@ -23,20 +22,23 @@ let ResultListView = Backbone.View.extend({
         prepare pagination
         listen to the collection
     */
-    initialize: function initialize(options) {
-        if(!this.collection) this.collection = options && options.collection || '';
-          // this.listenTo(this.collection, 'sync', this.render);
-          if(options && options.itemPerPage) this.itemPerPage = options.itemPerPage;
-
-          this.listenTo(options.collection, 'sync', this.render);
+    initialize(options = {}) {
+        if (!this.collection) {
+            this.collection = options.collection || '';
+        }
+        // this.listenTo(this.collection, 'sync', this.render);
+        if (options && options.itemPerPage) {
+            this.itemPerPage = options.itemPerPage;
+        }
+        this.listenTo(options.collection, 'sync', this.render);
     },
 
     /**
         we don't use arguments given by sync because render could be
         trigger by other means
     */
-    render: function render(collection, response, options) {
-        if(this.collection.models.length > 0)  {
+    render(collection, response, options) {
+        if (this.collection.models.length > 0) {
             this.itemViewList.forEach(this.removeItem, this);
             this.collection.each(this.addItem, this);
         }
@@ -46,41 +48,40 @@ let ResultListView = Backbone.View.extend({
     /**
 
     */
-    addNav: function addNav() {
-        var resultNavTmpl = this.template();
+    addNav() {
+        let resultNavTmpl = this.template();
         this.$el.html(resultNavTmpl);
     },
 
     /**
 
     */
-    addItem: function addItem(itemModel, ind) {
-        if(ind >= this.pageMin && ind <= this.pageMax) {
+    addItem(itemModel, ind) {
+        if (ind >= this.pageMin && ind <= this.pageMax) {
             this.itemViewList.push( new ResultItemView({ model: itemModel }) );
             this.$el.append(this.itemViewList[this.itemViewList.length - 1].render().el);
         }
     },
 
-    removeItem: function removeItem(itemView) {
+    removeItem(itemView) {
         itemView.remove();
     },
 
-
-    next: function next() {
+    next() {
         this.currentPage++;
         this.disableNext();
     },
 
-    previous: function previous() {
+    previous() {
         this.currentPage--;
         this.disablePrevious();
     },
 
-    disablePrevious : function disablePrevious() {
+    disablePrevious() {
         $('.ResultNav-prev').addClass('ResultNav-prev.disable');
     },
 
-    disableNext: function disableNext() {
+    disableNext() {
         $('.ResultNav-next').addClass('ResultNav-next.disable');
     }
 

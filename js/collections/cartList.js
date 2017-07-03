@@ -5,7 +5,6 @@
 'use-strict';
 
 const Backbone = require('backbone');
-const _ = require('underscore');
 const ResultItem = require('../models/resultItem');
 
 let CartList = Backbone.Collection.extend({
@@ -22,7 +21,7 @@ let CartList = Backbone.Collection.extend({
     * @method updateQuantity
     *
     */
-    updateQuantity: function updateQuantity(item) {
+    updateQuantity(item) {
         item.set('quantity', item.get('quantity') + 1);
         // this.total += item.get('price');
     },
@@ -30,9 +29,9 @@ let CartList = Backbone.Collection.extend({
     /**
     * Update the total of the cart
     */
-    updateTotal: function updateTotal() {
+    updateTotal() {
         this.total = this.map((el) => el.get('price'))
-        .reduce((memo, num) => memo + num);
+                         .reduce((memo, num) => memo + num);
 
         return this.total;
     }

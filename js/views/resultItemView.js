@@ -4,8 +4,6 @@
 'use-strict';
 
 const Backbone = require('backbone');
-const _ = require('underscore');
-const $ = require('jquery');
 const Handlebars = require('handlebars');
 const fs = require('fs');
 const resultItemTemplate = fs.readFileSync('templates/result-item.html', 'utf8');
@@ -16,15 +14,15 @@ let ResultItemView = Backbone.View.extend({
 
     template: Handlebars.compile(resultItemTemplate),
 
-    initialize: function initialize(options) {
-        this.model = options && options.model || null;
-        this.router = options && options.router || null ;
+    initialize(options = {}) {
+        this.model = options.model || null;
+        this.router = options.router || null ;
         this.listenTo(this.model, 'change', this.render);
     },
 
-    render: function render() {
+    render() {
         if(this.model) {
-            var itemTmpl = this.template(this.model.toJSON());
+            let itemTmpl = this.template(this.model.toJSON());
             this.$el.html(itemTmpl);
         }
         return this;
@@ -34,7 +32,7 @@ let ResultItemView = Backbone.View.extend({
         'click': 'click'
     },
 
-    click: function click(e) {
+    click(e) {
         e.preventDefault();
         e.stopPropagation();
 

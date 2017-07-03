@@ -18,14 +18,14 @@ let CartItemView = Backbone.View.extend({
 
 	template: Handlebars.compile(cartItemTemplate),
 
-	initialize: function initialize(options) {
+    initialize(options = {}) {
 		this.model = options && options.model || null;
 		this.listenTo(this.model, 'change', this.render);
 	},
 
-	render: function render() {
+	render() {
 		if(this.model) {
-			var itemTmpl = this.template(this.model.toJSON());
+			let itemTmpl = this.template(this.model.toJSON());
 			this.$el.html(itemTmpl);
 		}
 		return this;

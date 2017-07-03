@@ -31,9 +31,13 @@ let ResultView = Backbone.View.extend({
         prepare pagination
         listen to the collection
     */
-    initialize: function initialize(options) {
-        if(!this.collection) this.collection = options && options.collection || '';
-        if(options && options.itemPerPage) this.itemPerPage = options.itemPerPage;
+    initialize(options = {}) {
+        if (!this.collection) {
+            this.collection = options.collection || '';
+        }
+        if (options.itemPerPage) {
+            this.itemPerPage = options.itemPerPage;
+        }
         this.router = options.router;
         // this.renderNav   = _.once(this.addNav);
         // this.renderList = _.once(this.addList);
@@ -45,8 +49,8 @@ let ResultView = Backbone.View.extend({
         we don't use arguments given by sync because render could be
         trigger by other means
     */
-    render: function render() {
-        var current = this.currentPage;
+    render() {
+        let current = this.currentPage;
         // this.renderNav();
         // this.renderList();
         this.addList();
@@ -61,7 +65,7 @@ let ResultView = Backbone.View.extend({
     //  'click': 'click'
     // },
 
-    // click: function click(e) {
+    // click(e) {
     //  e.preventDefault();
     //  e.stopPropagation();
     // },
@@ -70,7 +74,7 @@ let ResultView = Backbone.View.extend({
         Can only be executed once
     */
     addNav: _.once(function addNav() {
-        var resultNavTmpl = this.templateNav();
+        let resultNavTmpl = this.templateNav();
         this.$el.append(resultNavTmpl);
     }),
 
@@ -78,50 +82,50 @@ let ResultView = Backbone.View.extend({
         Can only be executed once
     */
     addList: _.once(function addList() {
-        var resultListTmpl = this.templateList();
+        let resultListTmpl = this.templateList();
         this.$el.append(resultListTmpl);
     }),
 
     /**
 
     */
-    addItem: function addItem(itemModel, ind) {
-        var _this = this;
+    addItem(itemModel, ind) {
+        let _this = this;
         this.itemViewList.push( new ResultItemView({ model: itemModel, router: _this.router}) );
         $('.ResultList').append(_.last(this.itemViewList).render().el);
     },
 
-    removeItem: function removeItem(itemView) {
+    removeItem(itemView) {
         itemView.remove();
     },
 
     /** a skilful calculation to know on which page is the given model ;) */
-    getPage: function getPage(el, ind) {
+    getPage(el, ind) {
         return (ind - ind % this.itemPerPage) / this.itemPerPage;
     },
 
-    createPagination: function createPagination(coll, resp, opts) {
+    createPagination(coll, resp, opts) {
         // this.itemViewList.forEach(this.removeItem, this);
         this.pagination = coll.groupBy(this.getPage, this);
         this.maxPage = _.max(this.pagination);
         this.render();
     },
 
-    next: function next() {
+    next() {
         this.currentPage++;
         if(this.currentPage === this.maxPage) this.disableNext();
     },
 
-    previous: function previous() {
+    previous() {
         this.currentPage--;
         if(this.currentPage === 0) this.disablePrevious();
     },
 
-    disablePrevious : function disablePrevious() {
+    disablePrevious() {
         $('.ResultNav-prev').addClass('ResultNav-prev.disable');
     },
 
-    disableNext: function disableNext() {
+    disableNext() {
         $('.ResultNav-next').addClass('ResultNav-next.disable');
     }
 });

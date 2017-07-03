@@ -5,7 +5,7 @@
 'use-strict';
 
 const Backbone = require('backbone');
-const _ = require('underscore');
+
 let ResultItem = Backbone.Model.extend({
 
     /** Describe the property of a result model*/
@@ -27,7 +27,7 @@ let ResultItem = Backbone.Model.extend({
     * @return  {Object} a reformated attributes object
     * ready to be added to a model
     */
-    parse: function parse(response, options) {
+    parse(response, options) {
         return {
             id : response.trackId,
             title: response.trackName,

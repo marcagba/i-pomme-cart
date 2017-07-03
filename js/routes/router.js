@@ -16,13 +16,13 @@ let Router = Backbone.Router.extend({
     },
 
     /** A the creation, we bound the  search collection to the router */
-    initialize: function initialize(options) {
+    initialize(options = {}) {
         this.searchColl = options.searchColl;
         this.cartColl = options.cartColl;
     },
 
     /** perform a search throug Itunes API without refreshing the page */
-    search: function search(query) {
+    search(query) {
         this.searchColl.query = query;
         this.searchColl.fetch({
             url: this.searchColl.url(),
@@ -32,8 +32,8 @@ let Router = Backbone.Router.extend({
     },
 
     /** add an item to the cart */
-    add2Cart: function add2Cart(id) {
-        var item = this.searchColl.get(id);
+    add2Cart(id) {
+        let item = this.searchColl.get(id);
         this.cartColl.add(item);
     }
 });

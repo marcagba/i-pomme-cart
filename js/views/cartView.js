@@ -8,7 +8,6 @@ const Backbone = require('backbone');
 const _ = require('underscore');
 const $ = require('jquery');
 const Handlebars = require('handlebars');
-const ItemView = require('./cartItemView');
 const fs = require('fs');
 const cartListTemplate = fs.readFileSync('templates/cart-list.html', 'utf8');
 
@@ -25,13 +24,13 @@ let CartView = Backbone.View.extend({
     /**
     * we trigger the renderer when the collection updates
     */
-    initialize: function initialize(options) {
-        this.collection = options && options.collection || null;
+    initialize(options = {}) {
+        this.collection = options.collection || null;
         this.listenTo(this.collection, 'add', this.render);
     },
 
     /** TBD */
-    render: function render(model, collection) {
+    render(model, collection) {
         this.addStructure();
         this.total = collection.total;
 
@@ -43,7 +42,7 @@ let CartView = Backbone.View.extend({
     },
 
     addStructure: _.once(function addStructure() {
-        var cartListTmpl = this.template({ total: this.total});
+        let cartListTmpl = this.template({ total: this.total});
         this.$el.html(cartListTmpl);
         return this;
     }),
@@ -51,7 +50,7 @@ let CartView = Backbone.View.extend({
     /**
 
     */
-    addItem: function addItem(itemModel) {
+    addItem(itemModel) {
         this.cartItemList.push( new CartItemView({ model: itemModel }) );
         $('.CartList-body').append(_.last(this.cartItemList).render().el);
     }
